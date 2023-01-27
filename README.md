@@ -25,3 +25,6 @@ courses to be in one spot? Look no further, with ScheduleBuilder you can easily 
 
 ![homepage](pic1.png)
 ![dashboard](pic2.png)
+
+## EC2
+It's crazy how many web servers are out there. How do routes dynamically assign a path to its destination?
