@@ -27,8 +27,14 @@ courses to be in one spot? Look no further, with ScheduleBuilder you can easily 
 ![dashboard](pic2.png)
 
 ## EC2
-It's crazy how many web servers are out there. How do routes dynamically assign a path to its destination?
+It's crazy how many web servers are out there.
+How do routes dynamically assign a path to its 
+destination?
 
 ## Route 53
-hostname is schedulebuilder.click
-AWS can be buggy, make sure you clear browsing data to ensure everything is up. 
+hostname is schedulebuilder.click AWS can be 
+buggy, make sure you clear browsing data to ensure everything is up. 
+
+## HTTPS, TLS, and certificates
+Caddy then either serves up the requested static files (gateway) or routes the request to another 
+web service(reverse proxy)
