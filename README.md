@@ -100,3 +100,7 @@ HTML uses several reserved characters for defining its file format. If you want 
 | "         | `&quot;`    |
 | '         | `&apos;`    |
 | &#128512; | `&#128512;` |
+
+## HTML Structure Elements
+This will help you to remember how each element is layed out physically. 
+![HTML Structure](htmlElementsVisula.png)
