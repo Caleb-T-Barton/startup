@@ -104,3 +104,13 @@ HTML uses several reserved characters for defining its file format. If you want 
 ## HTML Structure Elements
 This will help you to remember how each element is layed out physically. 
 ![HTML Structure](htmlElementsVisula.png)
+
+## HTML Simon
+* ./deployFiles.sh -k <keyfile> -h <yourdomain> -s simon
+* I need to review the path tag better and how it works for SVGs
+  I understand that M moves the cursor to a certain point, and Q 
+  draws curves, but I don't understand how the coordinate system
+  works. It doesn't seem as simple as an x,y coordinate system
+* Remember organizational tags like main, header, div, span, etc. 
+* Writing comments out is super helpful for code organization, 
+  and overall thought process. 
