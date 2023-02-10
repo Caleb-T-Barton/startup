@@ -122,3 +122,12 @@ CSS defines everything as boxes. When you apply styles, you are applying them to
 ![CSS box model](cssBoxModel.jpg)
 
 By default, the width and height of an element is defined by the width and height of the content box. You can change the `box-sizing` CSS property from the default value of `content-box` to `border-box` in order to redefine the width and height to also include the padding and the border. This often makes it easier to style elements when their visual size matches their actual size.
+  
+| Value  | Meaning                                                                                                                      |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------- |
+| none   | Don't display this element. The element still exists, but the browser will not render it.                                    |
+| block  | Display this element with a width that fills its parent element. A `p` or `div` element have block display by default.       |
+| inline | Display this element with a width that is only as big as its content. A `b` or `span` element have block display by default. |
+| flex   | Display this element's children in a flexible orientation.                                                                   |
+| grid   | Display this element's children in a grid orientation.                                                                       |
+
