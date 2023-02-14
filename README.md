@@ -131,3 +131,6 @@ By default, the width and height of an element is defined by the width and heigh
 | flex   | Display this element's children in a flexible orientation.                                                                   |
 | grid   | Display this element's children in a grid orientation.                                                                       |
 
+## Simon CSS lessons learned
+* Always use a CSS framework, it makes deciding colors so much easier
+* Learn as many frameworks as you can, they are so cool
