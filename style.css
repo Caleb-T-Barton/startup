@@ -1,0 +1,15 @@
+.text-yellow {
+    color:gold;
+}
+footer {
+    color: white;
+}
+ul {
+    list-style-type: none;
+}
+img {
+    height: auto;
+    width: auto;
+    max-width: 250px;
+    max-height: 50px;
+}
