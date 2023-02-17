@@ -1,3 +1,10 @@
+html, body {
+    height: 100%;
+}
+body > footer {
+    position: sticky;
+    top: 100vh;
+}
 .text-yellow {
     color:gold;
 }
@@ -10,22 +17,15 @@ ul {
 img {
     height: auto;
     width: auto;
-    max-width: 250px;
-    max-height: 50px;
+}
+.container {
+    position: relative;
 }
 .explosion {
-    position: relative;
-    height: auto;
-    width: auto;
-    max-width: 100%;
-    max-height: 100px;
-    margin-left: 25%;
-    margin-right:25%;
-}
-.pic {
+    margin-top: 2%;
     position: absolute;
     top: 0px;
-    right: 0px;
+    left: 28%;
 }
 .center-elements {
     text-align: center;
@@ -33,7 +33,4 @@ img {
     width: auto;
     margin-left:25%;
     margin-right: 25%;
-}
-.schedulebuilder-logo {
-    fill:green;
 }
