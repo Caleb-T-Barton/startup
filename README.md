@@ -134,3 +134,10 @@ By default, the width and height of an element is defined by the width and heigh
 ## Simon CSS lessons learned
 * Always use a CSS framework, it makes deciding colors so much easier
 * Learn as many frameworks as you can, they are so cool
+
+## Start HTML & CSS lessons learned
+  * Bootstrap is awesome, it makes the CSS go by a lot quicker. You can waste a lot of time messing with CSS
+  * Some functionalities of bootstrap require a script. Make sure you import it at the body of your html pages 
+  right before the closing body tag
+  * I need to spend more time messing with the display CSS rules, and position rules.
+  * Organization and planning is key. Without them your development process will be one big headache. 
