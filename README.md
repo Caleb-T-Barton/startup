@@ -147,3 +147,7 @@ By default, the width and height of an element is defined by the width and heigh
 * Visualize the end result
 * MDN docs are your best friend
 * Don't overcomplicate the code
+
+## Async Await Lessons Learned
+* Even though using promises are easier for me to understand Async and Await are used more frequently
+* This page is extremely helpful: https://rapidapi.com/guides/fetch-api-async-await?utm_source=google&utm_medium=cpc&utm_campaign=DSA&utm_term=_&gclid=Cj0KCQiA6fafBhC1ARIsAIJjL8mNvyac3L6ZUmFbOhbPQaEQQECfyjDNZbeZTDiilrYTRvTKYIxXfN0aAiMhEALw_wcB
