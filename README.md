@@ -141,3 +141,9 @@ By default, the width and height of an element is defined by the width and heigh
   right before the closing body tag
   * I need to spend more time messing with the display CSS rules, and position rules.
   * Organization and planning is key. Without them your development process will be one big headache. 
+
+## JavaScript DOM Lessons Learned
+* Make sure you really plan out your code and think it in your head before you start implementing it. 
+* Visualize the end result
+* MDN docs are your best friend
+* Don't overcomplicate the code
