@@ -151,3 +151,16 @@ By default, the width and height of an element is defined by the width and heigh
 ## Async Await Lessons Learned
 * Even though using promises are easier for me to understand Async and Await are used more frequently
 * This page is extremely helpful: https://rapidapi.com/guides/fetch-api-async-await?utm_source=google&utm_medium=cpc&utm_campaign=DSA&utm_term=_&gclid=Cj0KCQiA6fafBhC1ARIsAIJjL8mNvyac3L6ZUmFbOhbPQaEQQECfyjDNZbeZTDiilrYTRvTKYIxXfN0aAiMhEALw_wcB
+
+## Simon Javascript Lesson Learned
+* Scripts need to be placed at the bottom of the html page to load the html before the JavaScript
+is run. 
+* Wherever a script tag is placed is when it will 
+be ran. That way you can run methods in the order
+you specify. 
+* ```Array.from()``` method according to MDN web docs creates a new, shallow-copied ```Array``` instance from 
+an iterable or array-like object. 
+```
+console.log(Array.from([1,2,3], x => x + x));
+// Expected output: Array [2,4,6]
+```
