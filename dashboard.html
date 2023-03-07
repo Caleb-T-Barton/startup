@@ -56,13 +56,9 @@
         </header>
         <main>
             <section>
-                <h2 class="text-white">Courses</h2>
+                <h2 class="text-white" id="name-course"></h2>
                 <ul class="text-yellow">
-                    <li>CS 260</li>
-                    <li>IT&C 366</li>
-                    <li>IT&C 350</li>
-                    <li>IT&C 529</li>
-                    <li>IT&C 291R</li>
+                    
                 </ul>
                 <div class="text-white">
                     <a class="nav-link" href="import.html">+Add Course</a>
@@ -71,139 +67,18 @@
               <section>
                 <h2>To-Do</h2>
                 <table class="table table">
-                    <tr>
-                        <th><strong>Course</strong></th>
-                        <th><strong>Assignment</strong></th>
-                        <th><strong>Score</strong></th>
-                        <th><strong>Date</strong></th>
-                        <th><strong>Completed</strong></th>
-                    </tr>
-                    <tr>
-                        <td>CS 260</td>
-                        <td>CSS & HTML</td>
-                        <td>1000/100</td>
-                        <td>February 24, 2023 (Wednesday)</td>
-                        <td><input type="checkbox"/></td>
-                    </tr>
-                    <tr>
-                        <td>IT&C 366</td>
-                        <td>Lab 4 Pen Test</td>
-                        <td>100/100</td>
-                        <td>February 24, 2023 (Wednesday)</td>
-                        <td><input type="checkbox"/></td>
-                    </tr>    
-                    <tr>
-                        <td>IT&C 350</td>
-                        <td>SQL Query Lab Part 1</td>
-                        <td>Not Scored</td>
-                        <td>February 28, 2023 Tuesday)</td>
-                        <td><input type="checkbox"/></td>
-                    </tr>    
-                    <tr>
-                        <td>CS 260</td>
-                        <td>CSS & HTML</td>
-                        <td>1000/100</td>
-                        <td>February 24, 2023 (Wednesday)</td>
-                        <td><input type="checkbox"/></td>
-                    </tr>
-                    <tr>
-                        <td>IT&C 366</td>
-                        <td>Lab 4 Pen Test</td>
-                        <td>100/100</td>
-                        <td>February 24, 2023 (Wednesday)</td>
-                        <td><input type="checkbox"/></td>
-                    </tr>    
-                    <tr>
-                        <td>IT&C 350</td>
-                        <td>SQL Query Lab Part 1</td>
-                        <td>Not Scored</td>
-                        <td>February 28, 2023 Tuesday)</td>
-                        <td><input type="checkbox"/></td>
-                    </tr>   
-                    <tr>
-                        <td>CS 260</td>
-                        <td>CSS & HTML</td>
-                        <td>1000/100</td>
-                        <td>February 24, 2023 (Wednesday)</td>
-                        <td><input type="checkbox"/></td>
-                    </tr>
-                    <tr>
-                        <td>IT&C 366</td>
-                        <td>Lab 4 Pen Test</td>
-                        <td>100/100</td>
-                        <td>February 24, 2023 (Wednesday)</td>
-                        <td><input type="checkbox"/></td>
-                    </tr>    
-                    <tr>
-                        <td>IT&C 350</td>
-                        <td>SQL Query Lab Part 1</td>
-                        <td>Not Scored</td>
-                        <td>February 28, 2023 Tuesday)</td>
-                        <td><input type="checkbox"/></td>
-                    </tr>   
-                    <tr>
-                        <td>CS 260</td>
-                        <td>CSS & HTML</td>
-                        <td>1000/100</td>
-                        <td>February 24, 2023 (Wednesday)</td>
-                        <td><input type="checkbox"/></td>
-                    </tr>
-                    <tr>
-                        <td>IT&C 366</td>
-                        <td>Lab 4 Pen Test</td>
-                        <td>100/100</td>
-                        <td>February 24, 2023 (Wednesday)</td>
-                        <td><input type="checkbox"/></td>
-                    </tr>    
-                    <tr>
-                        <td>IT&C 350</td>
-                        <td>SQL Query Lab Part 1</td>
-                        <td>Not Scored</td>
-                        <td>February 28, 2023 Tuesday)</td>
-                        <td><input type="checkbox"/></td>
-                    </tr>  
-                    <tr>
-                        <td>CS 260</td>
-                        <td>CSS & HTML</td>
-                        <td>1000/100</td>
-                        <td>February 24, 2023 (Wednesday)</td>
-                        <td><input type="checkbox"/></td>
-                    </tr>
-                    <tr>
-                        <td>IT&C 366</td>
-                        <td>Lab 4 Pen Test</td>
-                        <td>100/100</td>
-                        <td>February 24, 2023 (Wednesday)</td>
-                        <td><input type="checkbox"/></td>
-                    </tr>    
-                    <tr>
-                        <td>IT&C 350</td>
-                        <td>SQL Query Lab Part 1</td>
-                        <td>Not Scored</td>
-                        <td>February 28, 2023 Tuesday)</td>
-                        <td><input type="checkbox"/></td>
-                    </tr>   
-                    <tr>
-                        <td>CS 260</td>
-                        <td>CSS & HTML</td>
-                        <td>1000/100</td>
-                        <td>February 24, 2023 (Wednesday)</td>
-                        <td><input type="checkbox"/></td>
-                    </tr>
-                    <tr>
-                        <td>IT&C 366</td>
-                        <td>Lab 4 Pen Test</td>
-                        <td>100/100</td>
-                        <td>February 24, 2023 (Wednesday)</td>
-                        <td><input type="checkbox"/></td>
-                    </tr>    
-                    <tr>
-                        <td>IT&C 350</td>
-                        <td>SQL Query Lab Part 1</td>
-                        <td>Not Scored</td>
-                        <td>February 28, 2023 Tuesday)</td>
-                        <td><input type="checkbox"/></td>
-                    </tr>    
+                    <thead>
+                        <tr>
+                            <th><strong>Course</strong></th>
+                            <th><strong>Assignment</strong></th>
+                            <th><strong>Score</strong></th>
+                            <th><strong>Date</strong></th>
+                            <th><strong>Completed</strong></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>   
                 </table>
               </section>
         </main>
@@ -237,5 +112,6 @@
             <div class="p-2 mb-2 bg-warning"></div>
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script src="login.js"></script>
     </body>
 </html>
