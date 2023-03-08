@@ -54,33 +54,39 @@
             </nav>
         </header>
         <main>
+            <h1>THIS OPTION WILL NOT BE IMPLEMENTED UNTIL AFTER THIS CLASS WHEN I HAVE MORE TIME</h1>
             <form class="padding-top">
                 <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
                     <option selected>Choose How to Import Courses</option>
                     <option value="1">Canvas(Not working)</option>
                     <option value="2">LearningSuite(Not working)</option>
-                    <option value="3">Manual Entry</option>
                 </select>
             </form>
-            <p>I'm not sure how to implement this yet, but basically you will select an option above
-                and then the form corresponding to that selection will appear, and the user can fill 
-                out the info needed. 
-            </p>
             <form class="hidden">
                 <button class="btn btn-success">Import from Canvas</button>
             </form>
             <form class="hidden">
                 <button class="btn btn-success">Import from LearningSuite</button>
             </form>
-            <form class="hidden">
+            <h1>This will be how tasks are added for now</h1>
+            <form>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Course Name</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                    <input id="course-name" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Professor Name</span>
+                    <input id="professor-name" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Task</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                    <input id="assignment-name" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                 </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Due Date</span>
+                    <input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                </div>
+                <button id="submit-button" onclick="createCourse()"class="btn btn-success" type="submit">Add Task</button>
             </form>
         </main>
         <footer class="bg-secondary">
@@ -113,5 +119,6 @@
             <div class="p-2 mb-2 bg-warning"></div>
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script src="import.js"></script>
     </body>
 </html>

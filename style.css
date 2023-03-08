@@ -44,3 +44,9 @@ form {
 .hidden {
     display: none;
 }
+.line {
+    display: inline;
+}
+h1 {
+    text-align: center;
+}
