@@ -1,19 +1,32 @@
 class course {
     name;
     professor;
-    courseList = [];
 
     constructor(name, professor) {
         this.name = name;
         this.professor = professor;
     }
 
-    addCourseToList() {
-        this.courseList.push(this);
-        console.log(this.courseList);
+    addCourseToList() { 
+        let courseList = [];
+        courseList.push(this);
+        this.save(courseList);
     }
     removeCourse() {
         delete this;
+    }
+    save(newList) {
+        let currentList = JSON.parse(localStorage.getItem('courseList'));
+        if (currentList) {
+            currentList.push(newList);
+            localStorage.setItem('courseList', JSON.stringify(currentList));
+        }
+        else {
+            localStorage.setItem('courseList', JSON.stringify(newList));
+        }
+    }
+    get() {
+        return JSON.parse(localStorage.getItem('courseList'));
     }
 }
 
@@ -34,8 +47,8 @@ class assignment {
     }
 
     addTaskToList() {
-        this.assignments.push(this);
-        console.log(this.assignments);
+        const task = JSON.stringify(this);
+        localStorage.setItem('taskList', task);
     }
 
     removeTask() {
