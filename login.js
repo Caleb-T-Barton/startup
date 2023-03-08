@@ -6,10 +6,10 @@ function login() {
     window.location.href = "dashboard.html";
 }
 
-function getUserName() {
+function displayUserName() {
     const userName = localStorage.getItem("userName");
     const courseEl = document.querySelector("#name-course");
     courseEl.textContent = userName + "'s Courses";
 }
 
-getUserName();
+displayUserName();
