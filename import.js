@@ -102,10 +102,15 @@ class user {
         }
         return courses;
     }
+    addUser(newUser) {
+        let newUser = [];
+        //TODO add a new user and delete the old one. Only one user at a time!!!
+    }
 }
 
 const userName = localStorage.getItem('userName');
 const newUser = new user(userName);
+newUser.addUser(newUser);
 
 // Get info from user
 const submitButtonEl = document.getElementById('submit-button');
