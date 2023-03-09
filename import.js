@@ -37,6 +37,9 @@ class course {
         this.name = name;
     }
 
+    removeCourse() {
+        delete this;
+    }
 }
 
 class user {
@@ -59,8 +62,14 @@ class user {
         localStorage.setItem('assignments', JSON.stringify(assignments));
     }
     addCourse(name) {
+        let courses = [];
         const newCourse = new course(name);
-        this.courses.push(newCourse);
+        let eCourses = localStorage.getItem('courses');
+        if (eCourses) {
+            courses = JSON.parse(eCourses);
+        }
+        courses = this.saveCourses(newCourse, courses);
+        localStorage.setItem('courses', JSON.stringify(courses));
     }
     saveTasks(newAssignment, assignments) {
         let found = false;
@@ -76,6 +85,22 @@ class user {
             assignments.push(newAssignment);
         }
         return assignments;
+    }
+    saveCourses(newCourse, courses) {
+        console.log(newCourse);
+        let found = false;
+        for (const [i, obj] of courses.entries()) {
+            console.log('Hlkafsdk;');
+            if (obj.name === newCourse.name) {
+                newCourse.removeCourse();
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            courses.push(newCourse);
+        }
+        return courses;
     }
 }
 

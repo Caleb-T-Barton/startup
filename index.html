@@ -29,11 +29,23 @@
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="about.html">About</a>
                             </li>
+                            <script type="text/javascript">
+                                function redirect(location) {
+                                    console.log(location);
+                                    const userNameExist = localStorage.getItem('userName');
+                                    if (userNameExist) {
+                                        window.location.href = location;
+                                    }
+                                    else {
+                                        window.location.href = 'login.html';
+                                    }
+                                }
+                            </script>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="dashboard.html">Dashboard</a>
+                                <a class="nav-link text-white" href="javascript:redirect(data='dashboard.html')">Dashboard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="import.html">Import Courses</a>
+                                <a class="nav-link text-white" href="javascript:redirect(data='import.html')">Import Courses</a>
                             </li>
                         </ul>
                     </div>

@@ -11,7 +11,6 @@ function loadAssignments() {
       for (const [i, task] of assignments.entries()) {
         const courseTdEl = document.createElement('td');
         const nameTdEl = document.createElement('td');
-        const scoreTdEl = document.createElement('td');
         const dateTdEl = document.createElement('td');
         const completedTdEl = document.createElement('td');
         const checkboxEl = document.createElement('input')
@@ -21,14 +20,12 @@ function loadAssignments() {
   
         courseTdEl.textContent = task.course;
         nameTdEl.textContent = task.name;
-        scoreTdEl.textContent = task.score + '/';
         dateTdEl.textContent = task.date;
         completedTdEl.value = task.completed;
   
         const rowEl = document.createElement('tr');
         rowEl.appendChild(courseTdEl);
         rowEl.appendChild(nameTdEl);
-        rowEl.appendChild(scoreTdEl);
         rowEl.appendChild(dateTdEl);
         rowEl.appendChild(completedTdEl);
   
@@ -40,4 +37,26 @@ function loadAssignments() {
   }
   
  loadAssignments();
+
+ function loadCourses() {
+  let courses = [];
+  const eCourses = localStorage.getItem('courses');
+  if (eCourses) {
+    courses = JSON.parse(eCourses);
+  }
+  const ulEl = document.getElementById('course-list');
+
+  if (courses.length > 0) {
+    for (const [i, course] of courses.entries()) {
+      const listEl = document.createElement('li');
+      listEl.textContent = course.name;
+      ulEl.appendChild(listEl);
+    }
+  }
+  else {
+    ulEl.innerHTML = '<li>Import your Courses and they will appear here</li>';
+  }
+ }
+
+ loadCourses();
   
