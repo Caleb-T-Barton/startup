@@ -21,7 +21,7 @@
             <!--bg-body-tertiary is what makes the background color of the navbar-->
             <nav class="navbar navbar-expand-sm bg-success">
                 <div class="container-fluid">
-                    <a class="navbar-brand text-yellow" href="https://schedulebuilder.click/index.html">ScheduleBuilder</a>
+                    <a class="navbar-brand text-yellow" href="https://startup.schedulebuilder.click/index.html">ScheduleBuilder</a>
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class ="navbar-nav">
                             <li class="nav-item">
@@ -46,9 +46,15 @@
                           <li><a class="dropdown-item" href="index.html">Home</a></li>
                           <li><a class="dropdown-item" href="about.html">About</a></li>
                           <li><a class="dropdown-item" href="login.html">Dashboard</a></li>
-                          <li><a class="dropdown-item" href="login.html">Login :(</a></li>
+                          <li><a class="dropdown-item" href="login.html">Login</a></li>
                           <li><hr class="dropdown-divider"></li>
-                          <li><a class="dropdown-item" href="#">Logout!!!</a></li>
+                          <script type="text/javascript">
+                            function destroy() {
+                                localStorage.clear();
+                                window.location.href = 'logout.html';
+                            }
+                          </script>
+                          <li><a id='logout' class="dropdown-item" href="javascript:destroy()">Logout!!!</a></li>
                         </ul>
                       </div>
                 </div>
@@ -75,42 +81,13 @@
                             <th><strong>Completed</strong></th>
                         </tr>
                     </thead>
-                    <tbody>
-
+                    <tbody id="assignments">
                     </tbody>   
                 </table>
               </section>
         </main>
-        <footer class="bg-secondary">
-            <div class="container text-center">
-                <div class="row">
-                    <div class="col">
-                        <h5>ScheduleBuilder</h5>
-                        <ul>
-                            <li>What is ScheduleBuilder?</li>
-                            <li>How do I add my classes?</li>
-                        </ul>
-                    </div>
-                    <div class="col order-0 bg-success">
-                        <h5>Dashboard</h5>
-                        <ul>
-                            <li>Grades</li>
-                            <li>Schedule</li>
-                        </ul>
-                    </div>
-                    <div class="col order-1">
-                        <h5>Links</h5>
-                        <ul>
-                            <li><a class="link-dark" target="_blank" href="https://icons8.com/icon/39969/right-arrow">Right Arrow</a> icon by <a class="link-dark" target="_blank" href="https://icons8.com">Icons8</a></li>
-                            <li><a class="link-dark" target="_blank" href="https://icons8.com/icon/39944/left-arrow">Left Arrow</a> icon by <a class="link-dark" target="_blank" href="https://icons8.com">Icons8</a></li>
-                            <li><a class="link-dark" href="https://github.com/cbarto22/startup.git">Author: Caleb Barton</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="p-2 mb-2 bg-warning"></div>
-        </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <script src="login.js"></script>
+        <script src="load.js"></script>
     </body>
 </html>
