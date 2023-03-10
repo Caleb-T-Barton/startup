@@ -164,3 +164,7 @@ an iterable or array-like object.
 console.log(Array.from([1,2,3], x => x + x));
 // Expected output: Array [2,4,6]
 ```
+
+## Startup Javascript Lesson Learned
+* Plan out how you will organize your code and what operations you will need. Objects need to be thought
+out in detail, explaining how they will be manipulated, stored, etc. 
