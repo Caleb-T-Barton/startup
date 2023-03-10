@@ -116,8 +116,22 @@ submitButtonEl.addEventListener('click', (e)=> {
     const newCourse = courseEl.value;
     const newTask = taskEl.value;
     const newDate = dateEl.value;
-    // Create task
-    newUser.addTask(newCourse, newTask, newDate, userName);
-    // Create course
-    newUser.addCourse(newCourse);
+    if (newCourse !== "" && newTask !== "" && newDate !== "") {
+        // Create task
+        newUser.addTask(newCourse, newTask, newDate, userName);
+        let taskAddedEl = document.createElement('p');
+        taskAddedEl.textContent = "Task Added";
+        let formEl = document.getElementById('form-reset');
+        formEl.appendChild(taskAddedEl);
+        setTimeout(()=> {
+            taskAddedEl.textContent = "";
+            formEl.appendChild(taskedAddedEl);
+         }
+         ,1000);
+        // Create course
+        newUser.addCourse(newCourse);
+    }
+    else {
+        alert('Please fill out the form before submitting')
+    }
 });
