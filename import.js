@@ -1,5 +1,3 @@
-
-
 class assignment {
     course;
     name;
@@ -90,10 +88,8 @@ class user {
         return assignments;
     }
     saveCourses(newCourse, courses) {
-        console.log(newCourse);
         let found = false;
         for (const [i, obj] of courses.entries()) {
-            console.log('Hlkafsdk;');
             if (obj.name === newCourse.name) {
                 newCourse.removeCourse();
                 found = true;
@@ -125,10 +121,3 @@ submitButtonEl.addEventListener('click', (e)=> {
     // Create course
     newUser.addCourse(newCourse);
 });
-
-function taskCompleted() {
-    let checkBoxEl = document.getElementById('myCheck');
-    console.log("hello");
-}
-
-taskCompleted();

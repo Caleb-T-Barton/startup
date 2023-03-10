@@ -21,5 +21,3 @@ function displayUserName() {
     const courseEl = document.querySelector("#name-course");
     courseEl.textContent = userName + "'s Courses";
 }
-
-displayUserName();

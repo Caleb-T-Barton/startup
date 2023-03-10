@@ -167,4 +167,4 @@ console.log(Array.from([1,2,3], x => x + x));
 
 ## Startup Javascript Lesson Learned
 * Plan out how you will organize your code and what operations you will need. Objects need to be thought
-out in detail, explaining how they will be manipulated, stored, etc. 
+out in detail, explaining how they will be manipulated, stored, etc. This will save you the headache.
