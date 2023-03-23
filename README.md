@@ -270,8 +270,6 @@ Notice that in these examples the `next` parameter was omitted. Since we are not
 
 ## Using middleware
 
-📖 **Deeper dive reading**: [Express Middleware](https://expressjs.com/en/resources/middleware.html)
-
 The standard [Mediator/Middleware](https://www.patterns.dev/posts/mediator-pattern/) design pattern has two pieces: A mediator and middleware. Middleware represents componentized pieces of functionality. The mediator loads the middleware components and determines their order of execution. When a request comes to the mediator it then passes the request around to the middleware components. Following this pattern, Express is the mediator, and middleware functions are the middleware components.
 
 Express comes with a standard set of middleware functions. These provide functionality like routing, authentication, CORS, sessions, serving static web files, cookies, and logging. Some middleware functions are provided by default, and other ones must be installed using NPM before you can use it. You can also write your own middleware functions and use them with Express.
