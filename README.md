@@ -222,6 +222,7 @@ out in detail, explaining how they will be manipulated, stored, etc. This will s
 | DELETE  | Delete a resource. Either the URL path or HTTP header must contain the unique ID of the resource to delete.                                                                                                                                              |
 | OPTIONS | Get metadata about a resource. Usually only HTTP headers are returned. The resource itself is not returned.                                                                                                                                              |
 
+# Simon Service Lessons Learned
 
 ## Defining routes
 
@@ -417,3 +418,37 @@ app.listen(port, function () {
   console.log(`Listening on port ${port}`);
 });
 ```
+
+# Simon DB Lessons Learned 
+This is how a simple POST request to mongoDB was made using ```fetch();```
+```
+const userName = this.getPlayerName();
+const date = new Date().toLocaleDateString();
+const newScore = { name: userName, score: score, date: date };
+
+try {
+  const response = await fetch('/api/score', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify(newScore),
+  });
+
+  // Store what the service gave us as the high scores
+  const scores = await response.json();
+  localStorage.setItem('scores', JSON.stringify(scores));
+} catch {
+  // If there was an error then just track scores locally
+  this.updateScoresLocal(newScore);
+}
+```
+## Environment Variables
+* For whatever reason, the application wouldn't pull my environment variables from /etc/environment. What I had to do was include this line 
+of code in my ```database.js``` file to reach out to that file. First I
+had to install ```npm install dotenv --save```. 
+
+* ```require('dotenv').config({ path: '/etc/environment'});```
+
+## Module Exports
+* I was curious as to what this line of code did: ```module.exports = {addScore, getHighScores};``` Upon further research I found this from educative.io: "Module exports are the instructions that tell Node.js which bits of code (functions, objects, strings, etc.) to export from a given file so that other files are allowed to access the exported code."
+
+
