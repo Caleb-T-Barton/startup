@@ -459,3 +459,5 @@ had to install ```npm install dotenv --save```.
 * The service endpoints are contained in `index.js`. The endpoints include `authCreate`, `authLogin`, `authLogout`, and `userGet`. These all work with the database to store and get credentials and update the authorization cookie.
 
 * A new Express router, `secureApiRouter` wraps the existing router to add a middleware function that verifies that the authorization cookie is valid before passing the request to endpoints that require authorization. That makes it easy to create secure endpoints by just registering them with `secureApiRouter`.
+
+* ```insertOne()``` function in JavaScript inserts a single document into a collection. Whereas ```findOne()``` allows you to find one document in a collection. 
