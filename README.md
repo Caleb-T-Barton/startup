@@ -455,4 +455,7 @@ had to install ```npm install dotenv --save```.
 * An Anonymous Function in JavaScript is simply a function that doesn't have a name.
 * ```?``` can mean many different things, but in this lab it is used to return an undefined attribute of an object, without throwing the error that would typically occur at runtime. 
 * Bootstrap Modals are light-weight multipurpose JavaScript popups that are customizable. Like the login one on this example. 
-* 
+
+* The service endpoints are contained in `index.js`. The endpoints include `authCreate`, `authLogin`, `authLogout`, and `userGet`. These all work with the database to store and get credentials and update the authorization cookie.
+
+* A new Express router, `secureApiRouter` wraps the existing router to add a middleware function that verifies that the authorization cookie is valid before passing the request to endpoints that require authorization. That makes it easy to create secure endpoints by just registering them with `secureApiRouter`.
