@@ -451,4 +451,8 @@ had to install ```npm install dotenv --save```.
 ## Module Exports
 * I was curious as to what this line of code did: ```module.exports = {addScore, getHighScores};``` Upon further research I found this from educative.io: "Module exports are the instructions that tell Node.js which bits of code (functions, objects, strings, etc.) to export from a given file so that other files are allowed to access the exported code."
 
-
+# Simon Login Lessons Learned 
+* An Anonymous Function in JavaScript is simply a function that doesn't have a name.
+* ```?``` can mean many different things, but in this lab it is used to return an undefined attribute of an object, without throwing the error that would typically occur at runtime. 
+* Bootstrap Modals are light-weight multipurpose JavaScript popups that are customizable. Like the login one on this example. 
+* 
