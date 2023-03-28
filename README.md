@@ -461,3 +461,79 @@ had to install ```npm install dotenv --save```.
 * A new Express router, `secureApiRouter` wraps the existing router to add a middleware function that verifies that the authorization cookie is valid before passing the request to endpoints that require authorization. That makes it easy to create secure endpoints by just registering them with `secureApiRouter`.
 
 * ```insertOne()``` function in JavaScript inserts a single document into a collection. Whereas ```findOne()``` allows you to find one document in a collection. 
+
+# Simon Websocket Lessons Learned
+* ```new PeerProxy(httpService)``` is a line of code that creates the websocket functionality on the server. This is what allows peer to peer
+communication on the web server. 
+* ```new WebSocket()``` is a function that creates a websocket. The arguments will be first, what type of web socket, wither ws (web socket), or wss (web socket secure), and finally, the rest of the URL, which will usually be ```://localhost:8080```
+* ```onopen()``` is function for a websocket object that defines what occurs when a websocket is created and opened. In the case of this application, it shows that you are connected to the server. 
+* ```onmessage()``` is function for a websocket object that defines what occurs when a websocket is created, opened, and receives a message. Whatever is in the callback function is executed. 
+* The ```broadcastEvent()``` function in our simon application, creates message instances and helps classify them for whatever they are communicating, whether that be the start of a game, or the end of a game. 
+* ```const uuid = require('uuid');``` is a library that allows you to assign unique id's, in the case of this application its for assigning to users to keep track of who is connected to the web server with a socket. 
+* ```noServer: true``` keyword in the websocket object creation statement means we are "upgrading" the connection from HTTPS to a websocket connection. We now have to manually handle that connection using the ```websocketobject.on()``` function. 
+## Code I want to remember for this assignment
+```
+const { WebSocketServer } = require('ws');
+const uuid = require('uuid');
+
+class PeerProxy {
+  constructor(httpServer) {
+    // Create a websocket object
+    const wss = new WebSocketServer({ noServer: true });
+
+    // Handle the protocol upgrade from HTTP to WebSocket
+    httpServer.on('upgrade', (request, socket, head) => {
+      wss.handleUpgrade(request, socket, head, function done(ws) {
+        wss.emit('connection', ws, request);
+      });
+    });
+
+    // Keep track of all the connections so we can forward messages
+    let connections = [];
+
+    wss.on('connection', (ws) => {
+      const connection = { id: uuid.v4(), alive: true, ws: ws };
+      connections.push(connection);
+
+      // Forward messages to everyone except the sender
+      ws.on('message', function message(data) {
+        connections.forEach((c) => {
+          if (c.id !== connection.id) {
+            c.ws.send(data);
+          }
+        });
+      });
+
+      // Remove the closed connection so we don't try to forward anymore
+      ws.on('close', () => {
+        connections.findIndex((o, i) => {
+          if (o.id === connection.id) {
+            connections.splice(i, 1);
+            return true;
+          }
+        });
+      });
+
+      // Respond to pong messages by marking the connection alive
+      ws.on('pong', () => {
+        connection.alive = true;
+      });
+    });
+
+    // Keep active connections alive
+    setInterval(() => {
+      connections.forEach((c) => {
+        // Kill any connection that didn't respond to the ping last time
+        if (!c.alive) {
+          c.ws.terminate();
+        } else {
+          c.alive = false;
+          c.ws.ping();
+        }
+      });
+    }, 10000);
+  }
+}
+
+module.exports = { PeerProxy };
+```
