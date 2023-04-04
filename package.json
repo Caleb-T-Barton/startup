@@ -1,0 +1,17 @@
+{
+  "name": "startup",
+  "version": "1.0.0",
+  "description": "Caleb Barton <br> CS 260  <br> BYU Winter Semester 2023 <br> repo for startup website <br> I have never done web development before, so don't make too much fun of me.  * Creating a merge issue",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.2",
+    "http": "^0.0.1-security"
+  }
+}
