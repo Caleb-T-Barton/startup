@@ -29,19 +29,8 @@
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="about.html">About</a>
                             </li>
-                            <script type="text/javascript">
-                                function redirect() {
-                                    const userNameExist = localStorage.getItem('userName');
-                                    if (userNameExist) {
-                                        window.location.href = 'dashboard.html';
-                                    }
-                                    else {
-                                        window.location.href = 'login.html';
-                                    }
-                                }
-                            </script>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="javascript:redirect()">Dashboard</a>
+                                <a class="nav-link text-white" href="dashboard.html">Dashboard</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="import.html">Import Courses</a>
@@ -58,13 +47,7 @@
                           <li><a class="dropdown-item" href="login.html">Dashboard</a></li>
                           <li><a class="dropdown-item" href="login.html">Login</a></li>
                           <li><hr class="dropdown-divider"></li>
-                          <script type="text/javascript">
-                            function destroy() {
-                                localStorage.clear();
-                                window.location.href = 'logout.html';
-                            }
-                          </script>
-                          <li><a id='logout' class="dropdown-item" href="javascript:destroy()">Logout!!!</a></li>
+                          <li><a id='logout' class="dropdown-item" href="logout.html">Logout!!!</a></li>
                         </ul>
                       </div>
                 </div>

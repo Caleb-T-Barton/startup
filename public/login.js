@@ -1,23 +1,22 @@
-function login() {
-    const userNameEl = document.querySelector("#email");
-    const passwordEl = document.querySelector("#password");
-    localStorage.setItem("userName", userNameEl.value);
-    localStorage.setItem("password", passwordEl.value);
-    window.location.href = "dashboard.html";
-}
-
-function changePage(location) {
-    const userNameExists = localStorage.getItem('userName');
-    if (userNameExists) {
-        window.location.href = location;
+async function createUser() {
+    let endpoint = `/api/auth/create`;
+    const userName = document.querySelector('#name')?.value;
+    const password = document.querySelector('#password')?.value;
+    try {
+        const response = await fetch(endpoint, {
+            method: 'post',
+            body: JSON.stringify({ name: userName, password: password }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        });
+        console.log(response);
+        if (response?.status === 200) {
+            window.location.href = 'dashboard.html';
+        } else {
+            alert('Username already exists');
+        }
+    } catch (error) {
+        console.log(error);
     }
-    else {
-        window.location.href = 'login.html';
-    }
-}
-
-function displayUserName() {
-    const userName = localStorage.getItem("userName");
-    const courseEl = document.querySelector("#name-course");
-    courseEl.textContent = userName + "'s Courses";
 }
