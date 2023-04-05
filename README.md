@@ -537,3 +537,24 @@ class PeerProxy {
 
 module.exports = { PeerProxy };
 ```
+
+# React CLI Lessons Learned
+| Directory | File               | Purpose                                                      |
+| --------- | ------------------ | ------------------------------------------------------------ |
+| ./        | .gitignore         | Specifies files to not include in your Git commits           |
+|           | package-json       | NPM definition for included packages and script commands     |
+|           | package-lock.json  | Version constraints for included packages (do not edit this) |
+|           | README.md          | GitHub readme for the project                                |
+| ./public  | index.html         | Primary page for the application                             |
+|           | favicon.ico        | Primary application icon                                     |
+|           | logo\*.png         | Icons used for mobile devices                                |
+|           | manifest.json      | Configuration for use on mobile devices (PWA support)        |
+|           | robots.txt         | Directives for search engine crawlers like Google            |
+| ./src     | index.js           | Entry point for code execution                               |
+|           | index.css          | CSS for top level component                                  |
+|           | App.css            | CSS for the main application component                       |
+|           | App.js             | JavaScript for the main application component                |
+|           | App.test.js        | Automated tests for the main application component           |
+|           | logo.svg           | Image displayed in the main application component            |
+|           | reportWebVitals.js | Configuration for reporting application performance          |
+|           | setupTests.js      | Set up for automated tests                                   |

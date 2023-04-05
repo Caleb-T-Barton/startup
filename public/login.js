@@ -37,19 +37,17 @@
   })();
 
 async function createUser() {
-    let endpoint = `/api/auth/create`;
     const userName = document.querySelector('#name')?.value;
     const password = document.querySelector('#password')?.value;
     localStorage.setItem('userName', userName);
     try {
-        const response = await fetch(endpoint, {
+        const response = await fetch('/api/auth/create', {
             method: 'post',
             body: JSON.stringify({ name: userName, password: password }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
         });
-        console.log(response);
         if (response?.status === 200) {
             window.location.href = 'dashboard.html';
         } else {

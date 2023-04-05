@@ -27,16 +27,14 @@ apiRouter.post('/auth/create', async (req, res) => {
   // if (await DB.getUser(req.body.email)) {
   //   res.status(409).send({ msg: 'Existing user' });
   // } else {
-    const user = await DB.createUser(req.body.email, req.body.password);
-
+    const user = await DB.createUser(req.body.name, req.body.password);
     // Set the cookie
     setAuthCookie(res, user.token);
-
+    res.status(200);
     res.send({
       id: user._id,
     });
  // }
-    res.status(200).send('success');
 });
 
 apiRouter.delete('/auth/logout', (_req, res) => {
