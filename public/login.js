@@ -4,7 +4,10 @@
     if (userName) {
         authenticated = true;
         let getSEl = document.querySelector('#index-getstarted');
-        getSEl.setAttribute('onclick',`location.href='dashboard.html'`);
+        let window = location.href.split("/").slice(-1)[0];
+        if (window === 'index.html') {
+            getSEl.setAttribute('onclick',`location.href='dashboard.html'`);
+        }
     }
     else {
         authenticated = false;
@@ -53,4 +56,10 @@ async function createUser() {
 
 function logOut() {
     localStorage.clear();
+}
+
+function displayUserName() {
+    let nameEl = document.querySelector('#name-course');
+    let name = localStorage.getItem('userName');
+    nameEl.textContent = name + " Course's";
 }
