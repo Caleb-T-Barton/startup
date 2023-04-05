@@ -11,6 +11,8 @@
     }
     else {
         authenticated = false;
+        let logoutEl = document.querySelector('#index-logout');
+        let aboutLogoutEl = document.querySelector('#about-logout');
         let dashEl = document.querySelector('#index-dashboard');
         let importEl = document.querySelector('#index-import');
         let dashLiEl = document.querySelector('#index-dropdown-dashboard');
@@ -18,14 +20,18 @@
         let aImportEl = document.querySelector('#about-import');
         let aDashLiEl = document.querySelector('#about-dropdown-dashboard');
         let window = location.href.split("/").slice(-1)[0];
-        if (window === 'index.html') {
+        let home = location.href;
+        if (window === 'index.html' || home === 'https://startup.schedulebuilder.click/') {
             dashEl.style.display = 'none';
             importEl.style.display = 'none';
             dashLiEl.style.display = 'none';
-        } else {
+            logoutEl.style.display = 'none';
+        }
+        if (window === 'about.html') {
             aDashEl.style.display = 'none';
             aImportEl.style.display = 'none';
             aDashLiEl.style.display = 'none';
+            aboutLogoutEl.style.display = 'none';
         }
     }
   })();
@@ -56,10 +62,13 @@ async function createUser() {
 
 function logOut() {
     localStorage.clear();
+    fetch('api/auth/logout', {
+        method: 'delete',
+    }).then(() => (window.location.href = '/index.html'));
 }
 
 function displayUserName() {
     let nameEl = document.querySelector('#name-course');
     let name = localStorage.getItem('userName');
-    nameEl.textContent = name + " Course's";
+    nameEl.textContent = name + "'s Courses";
 }
