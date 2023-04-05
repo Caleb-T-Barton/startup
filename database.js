@@ -23,8 +23,13 @@ async function createUser(name, password) {
     await userCollection.insertOne(user);
   
     return user;
-  }
+}
+
+function getUserByToken(token) {
+    return userCollection.findOne({ token: token });
+}
 
   module.exports = {
     createUser,
+    getUserByToken,
   };

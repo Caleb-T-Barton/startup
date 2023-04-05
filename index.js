@@ -4,6 +4,8 @@ const express = require('express');
 const app = express();
 const DB = require('./database.js');
 
+const authCookieName = 'token';
+
 // The service port may be set on the command line
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
@@ -23,7 +25,20 @@ app.use(`/api`, apiRouter);
 // CreateAuth token for a new user
 apiRouter.post('/auth/create', async (req, res) => {
     let data = req.body;
-    res.send(200).send("Success");
+});
+
+// secureApiRouter verifies credentials for endpoints
+var secureApiRouter = express.Router();
+apiRouter.use(secureApiRouter);
+
+secureApiRouter.use(async (req, res, next) => {
+  const authToken = req.cookies[authCookieName];
+  const user = await DB.getUserByToken(authToken);
+  if (user) {
+    next();
+  } else {
+    res.status(401).send({ msg: 'Unauthorized' });
+  }
 });
 
 // Default error handler
@@ -35,6 +50,15 @@ app.use(function (err, req, res, next) {
 app.use((_req, res) => {
   res.sendFile('index.html', { root: 'public' });
 });
+
+// setAuthCookie in the HTTP response
+function setAuthCookie(res, authToken) {
+  res.cookie(authCookieName, authToken, {
+    secure: true,
+    httpOnly: true,
+    sameSite: 'strict',
+  });
+}
 
 const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
