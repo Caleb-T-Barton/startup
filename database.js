@@ -10,6 +10,7 @@ const url = `mongodb+srv://${userName}:${password}@${hostname}`;
 
 const client = new MongoClient(url);
 const userCollection = client.db('startup').collection('user');
+const taskCollection = client.db('startup').collection('task');
 
 async function createUser(name, password) {
     // Hash the password before we insert it into the database
@@ -29,7 +30,34 @@ function getUserByToken(token) {
     return userCollection.findOne({ token: token });
 }
 
+function addTask(task) {
+  taskCollection.insertOne(task);
+
+  // const newTask = {
+  //   course: task.course,
+  //   assignment: task.name,
+  //   date: task.date,
+  //   completed: task.completed,
+  //   user: task.user,
+  // };
+  //taskCollection.insertOne(newTask);
+}
+
+function getTasks() {
+  const query = {};
+  const options = {};
+  const cursor = taskCollection.find(query, options);
+  return cursor.toArray();
+}
+
+function getUser(name) {
+  return userCollection.findOne({name: name});
+}
+
   module.exports = {
     createUser,
     getUserByToken,
+    getUser,
+    addTask,
+    getTasks,
   };

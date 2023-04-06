@@ -24,9 +24,9 @@ app.use(`/api`, apiRouter);
 
 // CreateAuth token for a new user
 apiRouter.post('/auth/create', async (req, res) => {
-  // if (await DB.getUser(req.body.email)) {
-  //   res.status(409).send({ msg: 'Existing user' });
-  // } else {
+  if (await DB.getUser(req.body.email)) {
+     res.status(409).send({ msg: 'Existing user' });
+  } else {
     const user = await DB.createUser(req.body.name, req.body.password);
     // Set the cookie
     setAuthCookie(res, user.token);
@@ -34,7 +34,31 @@ apiRouter.post('/auth/create', async (req, res) => {
     res.send({
       id: user._id,
     });
- // }
+  }
+});
+
+apiRouter.post('/auth/login', async (req, res) => {
+  const user = await DB.getUser(req.body.name);
+  if (user) {
+    if (await bcrypt.compare(req.body.password, user.password)) {
+      setAuthCookie(res, user.token);
+      res.status(200);
+      res.send({ id: user._id });
+      return;
+    }
+  }
+  res.status(401).send({ msg: 'Unauthorized' });
+});
+
+apiRouter.get('/user/:name', async (req, res) => {
+  const user = await DB.getUser(req.params.name);
+  if (user) {
+    const token = req?.cookies.token;
+    res.status(200);
+    res.send({ name: user.name, authenticated: token === user.token });
+    return;
+  }
+  res.status(404).send({ msg: 'Unknown' });
 });
 
 apiRouter.delete('/auth/logout', (_req, res) => {
@@ -54,6 +78,19 @@ secureApiRouter.use(async (req, res, next) => {
   } else {
     res.status(401).send({ msg: 'Unauthorized' });
   }
+});
+
+// Submit a task
+secureApiRouter.post('/task', async (req, res) => {
+  await DB.addTask(req.body);
+  const tasks = await DB.getTasks();
+  res.send(tasks);
+});
+
+// Get tasks
+secureApiRouter.get('/tasks', async (req, res) => {
+  const tasks = await DB.getTasks();
+  res.send(tasks);
 });
 
 // Default error handler

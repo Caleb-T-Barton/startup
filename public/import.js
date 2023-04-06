@@ -45,62 +45,43 @@ class course {
 
 class user {
     name;
-    courses = [];
-    tasks = [];
 
     constructor(name) {
         this.name = name;
     }
 
-    addTask(course, name, date, username) {
-        let assignments = [];
+    async addTask(course, name, date, username) {
+        //let assignments = [];
         const newAssignment = new assignment(course, name, date, username);
-        let eAssignments = localStorage.getItem('assignments');
-        if (eAssignments) {
-            assignments = JSON.parse(eAssignments);
-        }
-        assignments = this.saveTasks(newAssignment, assignments);
-        localStorage.setItem('assignments', JSON.stringify(assignments));
+        //let eAssignments = localStorage.getItem('assignments');
+        //const response = await fetch('/api/tasks');
+        //assignments = await response.json();
+        // if (response) {
+        //     assignments = JSON.parse(eAssignments);
+        // }
+        // assignments = this.saveTasks(newAssignment, assignments);
+        // localStorage.setItem('assignments', JSON.stringify(assignments));
+        const request = await fetch('/api/task', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(newAssignment),
+          });
     }
-    addCourse(name) {
-        let courses = [];
-        const newCourse = new course(name);
-        let eCourses = localStorage.getItem('courses');
-        if (eCourses) {
-            courses = JSON.parse(eCourses);
-        }
-        courses = this.saveCourses(newCourse, courses);
-        localStorage.setItem('courses', JSON.stringify(courses));
-    }
-    saveTasks(newAssignment, assignments) {
-        let found = false;
-        for (const [i, obj] of assignments.entries()) {
-            if (obj.name === newAssignment.name && obj.course === newAssignment.course && obj.date === newAssignment.date) {
-                alert('Task already exists... deleting');
-                newAssignment.removeTask();
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
-            assignments.push(newAssignment);
-        }
-        return assignments;
-    }
-    saveCourses(newCourse, courses) {
-        let found = false;
-        for (const [i, obj] of courses.entries()) {
-            if (obj.name === newCourse.name) {
-                newCourse.removeCourse();
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
-            courses.push(newCourse);
-        }
-        return courses;
-    }
+    // saveTasks(newAssignment, assignments) {
+    //     let found = false;
+    //     for (const [i, obj] of assignments.entries()) {
+    //         if (obj.name === newAssignment.name && obj.course === newAssignment.course && obj.date === newAssignment.date) {
+    //             alert('Task already exists... deleting');
+    //             newAssignment.removeTask();
+    //             found = true;
+    //             break;
+    //         }
+    //     }
+    //     if (!found) {
+    //         assignments.push(newAssignment);
+    //     }
+    //     return assignments;
+    // }
 }
 
 const userName = localStorage.getItem('userName');
@@ -125,11 +106,9 @@ submitButtonEl.addEventListener('click', (e)=> {
         formEl.appendChild(taskAddedEl);
         setTimeout(()=> {
             taskAddedEl.textContent = "";
-            formEl.appendChild(taskedAddedEl);
+            formEl.appendChild(taskAddedEl);
          }
          ,1000);
-        // Create course
-        newUser.addCourse(newCourse);
     }
     else {
         alert('Please fill out the form before submitting')
