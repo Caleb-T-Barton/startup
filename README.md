@@ -558,3 +558,101 @@ module.exports = { PeerProxy };
 |           | logo.svg           | Image displayed in the main application component            |
 |           | reportWebVitals.js | Configuration for reporting application performance          |
 |           | setupTests.js      | Set up for automated tests                                   |
+
+# Simon React Lessons Learned
+To start an application run the following command
+* ```npm start```
+* If the above command doesn't work, you made need to run ```npm install``` if you just imported a new project into VSCode. 
+
+Use the following command to import Bootstrap into react to create components
+* ```npm install bootstrap react-bootstrap```
+* You will then need to add this to your component where you would like to use 
+bootstrap: ```import 'bootstrap/dist/css/bootstrap.min.css';```
+
+Here is the general overview of what you'll need to do to convert an application into a React application. 
+
+1. ⭐ **Reorganize Existing Old App**
+1. **Commit**: Commit this version in Git as the starting place for the conversion to React. It won't run, but by committing at this point can revert if necessary, instead of starting over. Make sure you keep testing and committing throughout this process.
+1. **Create template React application**. Run `npx create-react-app template-react`. This creates a new directory named `template-react` that contains the basic configuration and template React application code.
+1. **Clean up template code**
+   1. Uninstall and NPM packages you won't use (e.g. stats, test)
+   1. Delete the unnecessary create-react-app files (e.g. images)
+   1. Rename `js` JSX files have `jsx` extension
+   1. Replace the `favicon.ico` with the Simon icon
+   1. Update `manifest.json` to represent Simon
+   1. Clean up the `index.html` file to have the proper fields for Simon
+1. ⭐ **Move template files to Old App**
+1. ⭐ **Convert to React Bootstrap**
+1. ⭐ **Populate App.jsx**
+1. ⭐ **Create view components**
+1. ⭐ **Create the router**
+1. ⭐ **Convert to React components**
+1. ⭐ **Set up to debug**
+1. Refactor play.jsx into simonGame.jsx, simonButton.jsx, and players.jsx
+1. Refactor components to take advantage of React specific functionality and to create sub-components
+1. Move webSocket code from play.jsx to gameNotifier.js
+
+## Converting to React components
+
+Each of the HTML pages in the original code needs to be converted to a component represented by a corresponding `jsx` file. Each of the components is a bit different, and so you want to inspect them to see what they look like as a React component.
+
+The basic steps for converting the component include the following.
+
+- Copy the HTML over and put it in the return value of the component.
+- The `class` attribute is renamed to `className` so that it doesn't conflict with the JavaScript keyword `class`.
+
+- Delete the header and footer HTML since they are now represented in `app.jsx`.
+- Copy the JavaScript over and turn the functions into inner functions of the React component.
+- Create a file for the CSS and use an import statement in the component `jsx` file.
+- Create React state variables for each of the stateful objects in the component.
+- Replaced DOM query selectors with React state variables.
+- Move state up to parent components as necessary. For example, authentication state, or user name state.
+- Create child components as necessary. For example, a SimonGame and SimonButton component.
+
+## Setup to debug
+
+When running in production, the Simon web service running under Node.js on port 3000 serves up the Simon React application code when the browser requests `index.html`. This is the same as we did with previous Simon deliverables. The service pulls those files from the application's static HTML, CSS, and JavaScript files located in the `public` directory that we set up when we build the production distribution package.
+
+However, when the application is running in debug mode on your development environment we actually need two HTTP servers running. One for the Node.js web service, so that we can debug the service endpoints, and one for the React client HTTP debugger, so that we can develop and debug the React application code.
+
+To make this work when doing development debugging, we configure the React debugger HTTP server to listen on port 3001 and leave the Node.js server to listen on port 3000.
+
+To configure the React HTTP debugger to listen on port 3001 when running in our local development environment, we create a file named `.env.local` in the root of the project, and insert the following text.
+
+```
+PORT=3001
+```
+
+Next, we modify the `package.json` file to include the field `"proxy": "http://localhost:3000"`. This tells the React HTTP debugger that if a request is made for a service endpoint, it forwards it to port 3000, where our Node.js service is listening.
+
+```json
+{
+  "name": "simon-react",
+  // ...
+  "proxy": "http://localhost:3000"
+}
+```
+
+We also need to change the front-end WebSocket initialization found in the `gameNotifier.js` constructor to explicitly use the service port (3000) instead of the React HTTP debugger port (3001). Without this the front-end will send the webSocket messages to the React debug HTTP server listening on port 3001 and unlike HTTP traffic, it will not forward them onto port 3000 automatically. To explicitly send webSocket requests to port 3000 we use the dynamically injected process environment variable that is set when webpack creates the application bundle.
+
+```js
+let port = window.location.port;
+if (process.env.NODE_ENV !== 'production') {
+  port = 3000;
+}
+```
+
+This is a bit of annoying configuration, but without it you won't be able to debug your entire application in your development environment.
+
+## What is package.json?
+The package.json file contains descriptive and functional metadata about a project, such as a name, version, and dependencies. The file provides the npm package manager with various information to help identify the project and handle dependencies. NPM stands for node package manager, and is what make running JavaScript on the server possible. Without it, you'd would have a major headache coding problem of communicating with the server using various different languages. 
+
+* ```const state = user?.authenticated ? AuthState.Authenticated : AuthState.Unauthenticated;``` as explained by chatGPT:
+
+This line uses the optional chaining operator (?.) to safely access the authenticated property of the user object. The optional chaining operator prevents an error from being thrown if the user object is null or undefined.
+
+The line checks if the value of user?.authenticated is truthy or falsy. If user?.authenticated is truthy, meaning that the user object exists and has an authenticated property that is not falsy, then the authentication state is set to AuthState.Authenticated. If user?.authenticated is falsy, meaning that the user object does not exist or has an authenticated property that is falsy, then the authentication state is set to AuthState.Unauthenticated.
+
+The ternary operator (? :) is used to choose between AuthState.Authenticated and AuthState.Unauthenticated based on the truthiness of user?.authenticated. If user?.authenticated is truthy, then AuthState.Authenticated is returned, otherwise AuthState.Unauthenticated is returned.
+
+Overall, this line sets the authentication state of the user based on whether the authenticated property of the user object is truthy or falsy, and it does so safely by using the optional chaining operator to avoid errors if the user object is null or undefined.
